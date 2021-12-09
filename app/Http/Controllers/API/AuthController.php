@@ -14,9 +14,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'login' => 'required|unique:users,login|min:1|max:30',
+            'password' => 'required|min:4|max:32',
+            'employee_id' => 'required'
         ]);
         if($validator->fails()) {
             return response()->json([
@@ -24,16 +24,16 @@ class AuthController extends Controller
             ]);
         } else {
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
+                'login' => $request->login,
+                'employee_id' => $request->employee_id,
                 'password' => Hash::make($request->password)
             ]);
             $token = $user->createToken($user->email.'_Token')->plainTextToken;
             return response()->json([
                 'status' => 200,
-                'username' => $user->name,
+                'username' => $user->login,
                 'token' => $token,
-                'message' => 'Register Successfully'
+                'message' => 'Пользователь успешно создан'
             ]);
         }
     }
@@ -41,27 +41,27 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'email' => 'required',
-            'password' => 'required'
+            'login' => 'required|min:1|max:30',
+            'password' => 'required|min:4|max:32'
         ]);
         if($validator->fails()) {
             return response()->json([
                 'validation_errors' => $validator->messages(),
             ]);
         } else {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('login', $request->login)->first();
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return response()->json([
                     'status' => 401,
-                    'message' => 'Invalid Credentials'
+                    'message' => 'Неверные учетные данные'
                 ]);
             } else {
-                $token = $user->createToken($user->email.'_Token')->plainTextToken;
+                $token = $user->createToken($user->login.'_Token')->plainTextToken;
                 return response()->json([
                     'status' => 200,
-                    'username' => $user->name,
+                    'username' => $user->login,
                     'token' => $token,
-                    'message' => 'Logged in Successfully'
+                    'message' => 'Авторизация прошла успешно'
                 ]);
             }
         }
@@ -72,7 +72,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
         return response()->json([
             'status' => 200,
-            'message' => 'Logged out Successfully'
+            'message' => 'Выход успешно выполнен'
         ]);
     }
 }
