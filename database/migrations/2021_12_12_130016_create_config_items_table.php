@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBarcodesTable extends Migration
+class CreateConfigItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateBarcodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('barcodes', function (Blueprint $table) {
+        Schema::create('config_items', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 14)->unique();
+            $table->string('name', 100)->unique();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateBarcodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barcodes');
+        Schema::dropIfExists('config_items');
     }
 }

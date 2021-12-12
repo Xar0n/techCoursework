@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 
 class AuthController extends Controller
@@ -28,7 +30,11 @@ class AuthController extends Controller
                 'employee_id' => $request->employee_id,
                 'password' => Hash::make($request->password)
             ]);
-            $token = $user->createToken($user->email.'_Token')->plainTextToken;
+            $role = Role::create(['name' => 'admin']);
+            $permissions = Permission::pluck('id','id')->all();
+            $role->syncPermissions($permissions);
+            $user->assignRole([$role->id]);
+            $token = $user->createToken($user->login.'_Token')->plainTextToken;
             return response()->json([
                 'status' => 200,
                 'username' => $user->login,

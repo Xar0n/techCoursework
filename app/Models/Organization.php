@@ -13,15 +13,14 @@ use Illuminate\Database\Eloquent\Model;
 class Organization extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'login',
-        'password',
-        'employee_id',
+        'name',
     ];
 
     /**
