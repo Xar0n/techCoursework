@@ -14,8 +14,8 @@ class CreateReasonsWriteoffTable extends Migration
     public function up()
     {
         Schema::create('reasons_writeoff', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100)->unique();
+            $table->id()->comment('Первичный ключ');
+            $table->string('name', 100)->unique()->comment('Причина списания');
         });
     }
 

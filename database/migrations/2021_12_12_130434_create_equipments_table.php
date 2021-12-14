@@ -14,23 +14,19 @@ class CreateEquipmentsTable extends Migration
     public function up()
     {
         Schema::create('equipments', function (Blueprint $table) {
-            $table->id();
-            $table->string('code', 14)->unique();
-            $table->unsignedBigInteger('organization_id');
-            $table->unsignedBigInteger('employee_id')->nullable();
-            $table->unsignedBigInteger('view_id')->nullable();
-            $table->unsignedBigInteger('grade_id')->nullable();
-            $table->unsignedBigInteger('group_id')->nullable();
-            $table->unsignedBigInteger('config_item_id');
-            $table->unsignedBigInteger('reason_writeoff_id')->nullable();
+            $table->id()->comment('Первичный ключ');
+            $table->unsignedBigInteger('config_item_id')->comment('Наименование');
+            $table->unsignedBigInteger('organizations_employee_id')->nullable()->comment('Сотрудник и организация');
+            $table->unsignedBigInteger('view_id')->nullable()->comment('Вид');
+            $table->unsignedBigInteger('grade_id')->nullable()->comment('Сорт');
+            $table->unsignedBigInteger('group_id')->nullable()->comment('Группа');
+            $table->unsignedBigInteger('room_id')->nullable()->comment('Склад/кабинет и адрес');
             $table->foreign('config_item_id')->references('id')->on('config_items');
             $table->foreign('view_id')->references('id')->on('views');
             $table->foreign('grade_id')->references('id')->on('grades');
             $table->foreign('group_id')->references('id')->on('groups');
-            $table->foreign('organization_id')->references('id')->on('organizations');
-            $table->foreign('employee_id')->references('id')->on('employees');
-            $table->foreign('reason_writeoff_id')->references('id')->on('reasons_writeoff');
-            $table->boolean('using')->default(true);
+            $table->foreign('organizations_employee_id')->references('id')->on('organizations_employees');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "panoscape/history": "^2.3",
         "spatie/laravel-permission": "^5.4"
     },
     "require-dev": {

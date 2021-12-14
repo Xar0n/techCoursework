@@ -14,13 +14,13 @@ class CreateEquipmentsListsTable extends Migration
     public function up()
     {
         Schema::create('equipments_lists', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('have')->default(false);
-            $table->unsignedBigInteger('equipment_id');
-            $table->unsignedBigInteger('list_id');
-            $table->unsignedBigInteger('accepted_user_id');
+            $table->id()->comment('Первичный ключ');
+            $table->boolean('exist')->comment('Оборудование есть');
+            $table->unsignedBigInteger('equipments_num_id')->comment('Инвентаризируемое оборудование');
+            $table->unsignedBigInteger('list_id')->comment('Ведомость инвентаризации');
+            $table->unsignedBigInteger('accepted_user_id')->comment('Пользователь принявши решение');
             $table->foreign('accepted_user_id')->references('id')->on('users');
-            $table->foreign('equipment_id')->references('id')->on('equipments');
+            $table->foreign('equipments_num_id')->references('id')->on('equipments_nums');
             $table->foreign('list_id')->references('id')->on('lists');
         });
     }

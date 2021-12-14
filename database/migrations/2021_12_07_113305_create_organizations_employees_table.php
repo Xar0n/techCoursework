@@ -14,9 +14,9 @@ class CreateOrganizationsEmployeesTable extends Migration
     public function up()
     {
         Schema::create('organizations_employees', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->unsignedBigInteger('organization_id');
+            $table->id()->comment('Табличный ключ');
+            $table->unsignedBigInteger('employee_id')->comment('Сотрудник');
+            $table->unsignedBigInteger('organization_id')->comment('Организация');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
         });

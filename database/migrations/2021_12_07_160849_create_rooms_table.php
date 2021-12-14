@@ -14,10 +14,10 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id();
-            $table->string('number', 20);
-            $table->boolean('type');
-            $table->unsignedBigInteger('address_id');
+            $table->id()->comment('Первичный ключ');
+            $table->string('number', 20)->comment('Номер хранилища');
+            $table->tinyInteger('type')->comment('Тип хранилища: склад, кабинет');
+            $table->unsignedBigInteger('address_id')->comment('Адрес хранилища');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
         });
     }

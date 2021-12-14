@@ -14,8 +14,8 @@ class CreateGradesTable extends Migration
     public function up()
     {
         Schema::create('grades', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 30)->unique();
+            $table->id()->comment('Первичный ключ');
+            $table->string('name', 30)->unique()->comment('Сорт конфигурационной единицы');
         });
     }
 

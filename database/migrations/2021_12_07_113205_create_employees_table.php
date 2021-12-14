@@ -14,10 +14,10 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 30);
-            $table->string('surname', 30);
-            $table->string('patronymic', 30);
+            $table->id()->comment('Первичный ключ');
+            $table->string('name', 30)->comment('Имя');
+            $table->string('surname', 30)->comment('Фамилия');
+            $table->string('patronymic', 30)->comment('Отчество');
         });
     }
 

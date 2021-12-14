@@ -14,8 +14,8 @@ class CreateViewsTable extends Migration
     public function up()
     {
         Schema::create('views', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 30)->unique();
+            $table->id()->comment('Первичный ключ');
+            $table->string('name', 30)->unique()->comment('Вид конфигурационной единицы');
         });
     }
 

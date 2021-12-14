@@ -14,8 +14,8 @@ class CreateConfigItemsTable extends Migration
     public function up()
     {
         Schema::create('config_items', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100)->unique();
+            $table->id()->comment('Первичный ключ');
+            $table->string('name', 100)->unique()->comment('Наименование конфиогурационной единицы');
         });
     }
 
