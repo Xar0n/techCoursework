@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ViewFactory extends Factory
+class InventoryNumberFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class ViewFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique->sentence()
+            'number' => $this->faker->ean8()
         ];
     }
 }

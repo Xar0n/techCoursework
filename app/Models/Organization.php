@@ -32,4 +32,14 @@ class Organization extends Model
     {
         return $this->belongsToMany(Employee::class, 'organizations_employees', 'employee_id', 'organization_id');
     }
+
+    /**
+     * Адреса организации
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function addresses()
+    {
+        return $this->belongsToMany(Address::class, 'organizations_addresses', 'address_id', 'organization_id');
+    }
 }

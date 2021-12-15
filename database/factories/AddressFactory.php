@@ -14,7 +14,7 @@ class AddressFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->address,
+            'name' => $this->faker->unique->address,
         ];
     }
 }

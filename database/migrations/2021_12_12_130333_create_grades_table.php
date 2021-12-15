@@ -15,7 +15,7 @@ class CreateGradesTable extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id()->comment('Первичный ключ');
-            $table->string('name', 30)->unique()->comment('Сорт конфигурационной единицы');
+            $table->string('name', 100)->unique()->comment('Сорт конфигурационной единицы');
         });
     }
 

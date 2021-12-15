@@ -15,7 +15,7 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id()->comment('Первичный ключ');
-            $table->string('name', 30)->unique()->comment('Группа конфигурационной единицы');
+            $table->string('name', 100)->unique()->comment('Группа конфигурационной единицы');
         });
     }
 

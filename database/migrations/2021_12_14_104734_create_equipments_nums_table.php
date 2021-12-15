@@ -17,13 +17,13 @@ class CreateEquipmentsNumsTable extends Migration
             $table->id()->comment('Первичный ключ');
             $table->boolean('used')->default(true)->comment('Использование');
             $table->unsignedBigInteger('equipment_id')->nullable()->comment('Часть оборудования');
-            $table->unsignedBigInteger('inventory_number_id')->nullable()->comment('Инвентарный номер');
             $table->unsignedBigInteger('reason_writeoff_id')->nullable()->comment('Причина списания');
             $table->unsignedBigInteger('barcode_id')->nullable()->comment('Штрихкод формата EAN-13');
+            $table->unsignedBigInteger('employee_id')->nullable()->comment('Сотрудник использующий единицу оборудования');
             $table->foreign('equipment_id')->references('id')->on('equipments');
-            $table->foreign('inventory_number_id')->references('id')->on('inventory_numbers');
             $table->foreign('reason_writeoff_id')->references('id')->on('reasons_writeoff');
             $table->foreign('barcode_id')->references('id')->on('barcodes');
+            $table->foreign('employee_id')->references('id')->on('employees');
         });
     }
 

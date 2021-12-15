@@ -15,7 +15,7 @@ class CreateViewsTable extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id()->comment('Первичный ключ');
-            $table->string('name', 30)->unique()->comment('Вид конфигурационной единицы');
+            $table->string('name', 100)->unique()->comment('Вид конфигурационной единицы');
         });
     }
 
