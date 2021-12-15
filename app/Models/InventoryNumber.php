@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $room_id
- * @property int $config_item_id
- * @property int $view_id
- * @property int $grade_id
- * @property int $group_id
+ * @property string $number
  */
-class Equipment extends Model
+class InventoryNumber extends Model
 {
     use HasFactory;
     /**
@@ -21,12 +17,7 @@ class Equipment extends Model
      * @var array
      */
     protected $fillable = [
-        'employee_id',
-        'room_id',
-        'config_item_id',
-        'view_id',
-        'grade_id',
-        'group_id'
+        'number'
     ];
 
     /**
@@ -35,10 +26,15 @@ class Equipment extends Model
      * @var array
      */
     protected $casts = [
-
+        'number' => 'string'
     ];
 
-
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
 
     // Scopes...
 

@@ -6,28 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $room_id
- * @property int $config_item_id
- * @property int $view_id
- * @property int $grade_id
- * @property int $group_id
+ * @property boolean $exist
  */
-class Equipment extends Model
+class EquipmentList extends Model
 {
     use HasFactory;
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'equipments_lists';
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'employee_id',
-        'room_id',
-        'config_item_id',
-        'view_id',
-        'grade_id',
-        'group_id'
+        'equipments_num_id', 'exist', 'list_id', 'accepted_user_id'
     ];
+
 
     /**
      * The attributes that should be casted to native types.
@@ -35,10 +33,15 @@ class Equipment extends Model
      * @var array
      */
     protected $casts = [
-
+        'exist' => 'boolean'
     ];
 
-
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
 
     // Scopes...
 

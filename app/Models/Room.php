@@ -5,22 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+/**
+ * @property string $number
+ * @property int    $type
+ */
+class Room extends Model
 {
     use HasFactory;
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'addresses';
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name'
+        'address_id', 'number', 'type'
     ];
 
     /**
@@ -29,7 +27,7 @@ class Address extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string'
+        'number' => 'string', 'type' => 'int'
     ];
 
     /**
@@ -44,12 +42,13 @@ class Address extends Model
     // Functions ...
 
     // Relations ...
+
     /**
-     * Хранилища принадлежащие адресу
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Адрес хранилища
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function rooms()
+    public function address()
     {
-        return $this->hasMany('App\Models\Room');
+        return $this->belongsTo(Address::class, 'address_id');
     }
 }

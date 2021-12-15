@@ -34,6 +34,6 @@ class Employee extends Model
      */
     public function organizations()
     {
-        return $this->belongsToMany(Organization::class, 'organizations_employees', 'organization_id', 'employee_id');
+        return $this->belongsToMany(Organization::class, 'organizations_employees', 'employee_id', 'organization_id');
     }
 }

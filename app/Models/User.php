@@ -54,7 +54,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Привязанный к пользователю сотрудник
+     * Сотрудник к которуму относится пользователь
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -62,4 +62,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
+
 }

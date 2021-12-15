@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id()->comment('Первичный ключ');
             $table->string('login', 30)->unique()->comment('Логин');
             $table->string('password', 60)->comment('Пароль');
-            $table->unsignedBigInteger('organizations_employee_id')->nullable()->comment('Связанный сотрудник и организация');
-            $table->foreign('organizations_employee_id')->references('id')->on('organizations_employees');
+            $table->unsignedBigInteger('employee_id')->nullable()->comment('Связанный сотрудник');
+            $table->foreign('employee_id')->references('id')->on('employees');
             $table->rememberToken()->comment('Токен');
             $table->timestamps();
         });

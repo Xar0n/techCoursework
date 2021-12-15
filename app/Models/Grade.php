@@ -6,27 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $room_id
- * @property int $config_item_id
- * @property int $view_id
- * @property int $grade_id
- * @property int $group_id
+ * @property string $name
  */
-class Equipment extends Model
+class Grade extends Model
 {
     use HasFactory;
     /**
-     * Attributes that should be mass-assignable.
+     * The primary key for the model.
      *
-     * @var array
+     * @var string
      */
     protected $fillable = [
-        'employee_id',
-        'room_id',
-        'config_item_id',
-        'view_id',
-        'grade_id',
-        'group_id'
+        'name'
     ];
 
     /**
@@ -35,10 +26,15 @@ class Equipment extends Model
      * @var array
      */
     protected $casts = [
-
+        'name' => 'string'
     ];
 
-
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
 
     // Scopes...
 
