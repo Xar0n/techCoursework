@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Equipment::factory()->has(EquipmentNum::factory()->count(20))->count(20)->create();
+        User::factory()->create();
+       // Equipment::factory()->has(EquipmentNum::factory()->count(20))->count(20)->create();
     }
 }

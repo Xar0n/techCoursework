@@ -56,11 +56,11 @@ class User extends Authenticatable
     /**
      * Сотрудник к которуму относится пользователь
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->hasOne(Employee::class, 'id');
     }
 
 }

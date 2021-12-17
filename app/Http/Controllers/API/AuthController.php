@@ -13,37 +13,6 @@ use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        $validator = Validator::make($request->all(),[
-            'login' => 'required|unique:users,login|min:1|max:30',
-            'password' => 'required|min:4|max:32',
-            'employee_id' => 'required'
-        ]);
-        if($validator->fails()) {
-            return response()->json([
-                'validation_errors' => $validator->messages(),
-            ]);
-        } else {
-            $user = User::create([
-                'login' => $request->login,
-                'employee_id' => $request->employee_id,
-                'password' => Hash::make($request->password)
-            ]);
-            $role = Role::create(['name' => 'admin']);
-            $permissions = Permission::pluck('id','id')->all();
-            $role->syncPermissions($permissions);
-            $user->assignRole([$role->id]);
-            $token = $user->createToken($user->login.'_Token')->plainTextToken;
-            return response()->json([
-                'status' => 200,
-                'username' => $user->login,
-                'token' => $token,
-                'message' => 'Пользователь успешно создан'
-            ]);
-        }
-    }
-
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(),[

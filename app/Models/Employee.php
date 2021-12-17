@@ -30,10 +30,10 @@ class Employee extends Model
     /**
      * Все организации к которым принадлежит сотрудник
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function organizations()
     {
-        return $this->belongsToMany(Organization::class, 'organizations_employees', 'employee_id', 'organization_id');
+        return $this->hasMany(Organization::class, 'id');
     }
 }
