@@ -62,6 +62,15 @@ class Equipment extends Model
     }
 
     /**
+     * Организация
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class, 'organization_id');
+    }
+
+    /**
      * Сорт
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

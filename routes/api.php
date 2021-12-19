@@ -17,9 +17,9 @@ use App\Http\Controllers\API\EquipmentController;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/checkingAuthenticated', function () {
-        return response()->json(['message' => 'You are in', 'status' => 200], 200);
-    });
-    Route::get('/equipments', [EquipmentController::class, 'showAll']);
+    Route::get('equipment', [EquipmentController::class, 'show']);
+    Route::patch('equipments/{id}', [EquipmentController::class, 'update']);
+    Route::get('equipments', [EquipmentController::class, 'showAll']);
+    Route::post('equipments', [EquipmentController::class, 'create']);
     Route::post('logout', [AuthController::class, 'logout']);
 });
